@@ -2,3 +2,5 @@ streamlit
 pydeck
 geopy
 db-sqlite3
+folium
+streamlit-folium
