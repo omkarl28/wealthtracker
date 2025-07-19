@@ -63,8 +63,16 @@ start_date, end_date = st.date_input(
 mask = (df["datetime"].dt.date >= start_date) & (df["datetime"].dt.date <= end_date)
 filtered = df[mask]
 
+# ---------------------------
+# TEXT FILTER FOR PLACE TITLE
+# ---------------------------
+search_text = st.text_input("🔍 Search for Place (by title/keyword)", "")
+
+if search_text:
+    filtered = filtered[filtered['title'].str.contains(search_text, case=False, na=False)]
+
 if filtered.empty:
-    st.info("No data found for selected date range.")
+    st.info("No data found for selected date range and search filter.")
     st.stop()
 
 # ---------------------------
